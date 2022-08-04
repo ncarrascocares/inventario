@@ -108,3 +108,38 @@ if ($email!="") {
     }
     
 }
+
+#Verificando usuario#
+$check_usuario=$conexion(); 
+$check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario");
+if ($check_usuario->rowCount()>0) {
+    echo '
+    <div class="notification is-danger is-light">
+        <button class="delete"></button>
+        <strong>Ocurrio un error inesperado!</strong><br>
+        El <strong> Usuario </strong> ya se encuentra registrado, favor ingresar otro usuario.
+    </div>
+    ';
+    exit();
+}
+
+$check_usuario=null;
+
+#verificando las contraseñas
+if ($clave_1 != $clave_2) {
+    echo '
+    <div class="notification is-danger is-light">
+        <button class="delete"></button>
+        <strong>Ocurrio un error inesperado!</strong><br>
+        Las <strong> Claves </strong> ingresadas no coinciden.
+    </div>
+    ';
+    exit();
+}else{
+    $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>10]);
+
+}
+
+#Guardando datos#
+$guardar_usuario=$conexion(); 
+$guardar_usuario=$guardar_usuario->query("INSERT INTO  usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES ('$nombre', '$apellido', '$usuario', '$clave', '$email')");
