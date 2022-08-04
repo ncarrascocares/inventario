@@ -1,6 +1,6 @@
 <?php
 /*Este archivo va a tener todas las funciones necesarias para el funcionamiento del proyecto,
- desde la conexión y tdo el crud*/
+ desde la conexión y todo el crud*/
 
  //Conexión a la base de datos
  function conexion(){
