@@ -110,8 +110,8 @@ if ($email!="") {
 }
 
 #Verificando usuario#
-$check_usuario=$conexion(); 
-$check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario");
+$check_usuario=conexion(); 
+$check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario'");
 if ($check_usuario->rowCount()>0) {
     echo '
     <div class="notification is-danger is-light">
@@ -141,5 +141,44 @@ if ($clave_1 != $clave_2) {
 }
 
 #Guardando datos#
-$guardar_usuario=$conexion(); 
-$guardar_usuario=$guardar_usuario->query("INSERT INTO  usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES ('$nombre', '$apellido', '$usuario', '$clave', '$email')");
+
+#Metodo de guardado 1#
+/*
+    $guardar_usuario=conexion(); 
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO  usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES ('$nombre', '$apellido', '$usuario', '$clave', '$email')");
+    
+ */
+
+#Método de guardado 2 utilizando prepare, este método permite aplicar un nuevo filtro y evitar inyección sql#
+$guardar_usuario=conexion(); 
+$guardar_usuario=$guardar_usuario->prepare("INSERT INTO  usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES (:nombre, :apellido,:usuario,:clave,:email)");
+$marcadores=[
+    ":nombre" => $nombre,
+    ":apellido" => $apellido,
+    ":usuario" => $usuario,
+    ":clave" => $clave,
+    ":email" => $email
+];
+
+#Este registro guardara la cantidad de registros que se almacenarón en la bd
+$guardar_usuario->execute($marcadores);
+
+if($guardar_usuario->rowCount()==1){
+    echo '
+    <div class="notification is-info is-light">
+        <button class="delete"></button>
+        <strong>Usuario registrado!</strong><br>
+        El usuario se registro con exito.
+    </div>
+    ';
+}else{
+    echo '
+    <div class="notification is-danger is-light">
+        <button class="delete"></button>
+        <strong>Ocurrio un error inesperado!</strong><br>
+        No se realizo la carga del usuario. Por favor intente nuevamente.
+    </div>
+    ';
+}
+
+$guardar_usuario = null;
