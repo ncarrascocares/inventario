@@ -18,6 +18,12 @@
         //carga de una vista dependiendo de lo que contenga el metodo GET
         if (is_file("./vistas/" .$_GET['vista'].".php") && $_GET['vista'] !="login" && $_GET['vista'] !="404") {
 
+            # Cerrar la sesión #
+            if ((!isset($_SESSION['id']) || isset($_SESSION['id']) == "") || (!isset($_SESSION['usuario']) || isset($_SESSION['usuario']) == "")) {
+                include "./vistas/logout.php";
+                exit();
+            }
+
             include "./inc/navbar.php";
             include "./vistas/".$_GET['vista'].".php";
             include "./inc/script.php";
