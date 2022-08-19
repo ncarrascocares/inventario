@@ -10,7 +10,7 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
-
+<!--Usuarios-->
   <div id="navbarBasicExample" class="navbar-menu">
        <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">Usuarios </a>
@@ -20,23 +20,23 @@
           <a class="navbar-item" href="index.php?vista=user_search">Buscar</a>
         </div>
       </div>
-<!--Categorias-->
+<!--Sucursales-->
        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Categorias</a>
+        <a class="navbar-link">Sucursal</a>
         <div class="navbar-dropdown">
-          <a class="navbar-item">Nuevo</a>
-          <a class="navbar-item">Lista</a>
-          <a class="navbar-item">Buscar</a>
+          <a class="navbar-item" href="index.php?vista=sucursal_new">Nueva Sucursal</a>
+          <a class="navbar-item" href="index.php?vista=sucursal_list">Listar sucursales</a>
+          <!-- <a class="navbar-item">Buscar</a> -->
         </div>
       </div>
-    <!--Productos-->
+    <!--Inventario-->
        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Productos</a>
+        <a class="navbar-link">Inventario</a>
         <div class="navbar-dropdown">
-          <a class="navbar-item">Nuevo</a>
-          <a class="navbar-item">Lista</a>
-          <a class="navbar-item">Categorias</a>
-          <a class="navbar-item">Buscar</a>
+          <a class="navbar-item" href="index.php?vista=inventario_new">Nuevo</a>
+          <a class="navbar-item" href="index.php?vista=inventario_list">Listar inventario</a>
+          <!-- <a class="navbar-item">Categorias</a> -->
+          <a class="navbar-item" href="index.php?vista=inventario_search">Buscar</a>
         </div>
       </div>
 
