@@ -33,8 +33,8 @@
        <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">Inventario</a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="index.php?vista=inventario_new">Nuevo</a>
-          <a class="navbar-item" href="index.php?vista=inventario_list">Listar inventario</a>
+          <a class="navbar-item" href="index.php?vista=articulo_new">Nuevo</a>
+          <a class="navbar-item" href="index.php?vista=articulo_list">Listar inventario</a>
           <!-- <a class="navbar-item">Categorias</a> -->
           <a class="navbar-item" href="index.php?vista=inventario_search">Buscar</a>
         </div>
